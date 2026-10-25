@@ -4,20 +4,34 @@
 
 ## 安装
 
-AstrBot 管理面板进入 **插件 → 插件 → 安装插件（+）→ 从链接安装**，填写本仓库地址：
-
-```text
-https://github.com/Zomedk/astrbot_plugin_genshin_lite
-```
-
-也可以直接克隆到 AstrBot 的插件目录：
+建议 SSH 登录运行 AstrBot 的机器，进入包含 `data/plugins` 的 AstrBot 项目根目录，先检查目标目录和磁盘空间：
 
 ```bash
-git clone https://github.com/Zomedk/astrbot_plugin_genshin_lite \
+ls -ld data/plugins/astrbot_plugin_genshin_lite
+df -h
+free -h
+```
+
+若目标目录不存在，执行：
+
+```bash
+git clone --depth 1 --progress \
+  https://github.com/Zomedk/astrbot_plugin_genshin_lite.git \
   data/plugins/astrbot_plugin_genshin_lite
 ```
 
-插件附带 v3 SQLite 索引压缩包 `knowledge.db.gz`（约 85 MiB）。首次加载时会自动解压到 AstrBot 的插件数据目录，后续更新插件不会覆盖已生成的索引。索引解压后约 158 MiB；请为 AstrBot 数据盘预留空间。本仓库通过 GitHub 直接安装；由于插件包超过 AstrBot 插件市场 16 MB 的限制，目前不适合提交到插件市场。
+这里的 SSH 是指登录 VPS；仓库公开，克隆使用 HTTPS，不需要在 VPS 配置 GitHub SSH 密钥。若同名目录已经存在，请先检查其中的文件和安装状态，不要直接覆盖或删除。
+
+插件附带 v3 SQLite 索引压缩包 `knowledge.db.gz`（约 85 MiB）。首次加载时会自动解压到 AstrBot 的插件数据目录，后续更新插件不会覆盖已生成的索引。索引解压后约 158 MiB；考虑 Git 对象和工作区副本，建议目标数据盘至少预留 500 MiB。2 GiB 内存的 VPS 还应查看 `free -h` 并留意 AstrBot 与其他服务的占用。
+
+下载遇到网络错误时，可以先检查 GitHub ZIP 地址是否可达：
+
+```bash
+curl -IL --connect-timeout 10 --max-time 20 \
+  https://github.com/Zomedk/astrbot_plugin_genshin_lite/archive/refs/heads/main.zip
+```
+
+本仓库通过 GitHub 直接安装；由于插件包超过 AstrBot 插件市场 16 MB 的限制，目前不适合提交到插件市场。
 
 ## 启用
 
