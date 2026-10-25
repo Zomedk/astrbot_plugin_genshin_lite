@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+*.building
+build_db.py
+knowledge.db
+knowledge_v*.db
+knowledge_before_v*.db

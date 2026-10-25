@@ -1,0 +1,12 @@
+name: astrbot_plugin_genshin_lite
+display_name: 原神剧情检索
+desc: 使用本地 SQLite FTS5 检索《原神》中文剧情、书籍、角色、武器和圣遗物文本。
+version: 0.2.0
+author: Zomedk
+repo: https://github.com/Zomedk/astrbot_plugin_genshin_lite
+astrbot_version: ">=4.5.7,<5"
+short_desc: 本地原神原文检索工具，无需在线 Embedding 服务。
+tags:
+  - 原神
+  - RAG
+  - 搜索
